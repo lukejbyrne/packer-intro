@@ -1,11 +1,11 @@
-# provider
+# Create an ARM Amazon Linux 2 AMI
 packer {
-    required_plugins {
-        amazon = {
-            version = ">= 1.0.0"
-            source = "github.com/hashicorp/amazon"
-        }
+  required_plugins {
+    amazon = {
+      version = ">= 1.1.1"
+      source  = "github.com/hashicorp/amazon"
     }
+  }
 }
 
 # base to use
@@ -13,7 +13,7 @@ packer {
 source "amazon-ebs" "cocktails" {
     ami_name = "cocktails-app"
     source_ami = "ami-00c6177f250e07ec1"
-    instance_type "t2.micro"
+    instance_type = "t2.micro"
     region = "us-west-2"
     ssh_username = "ec2-user"
 }
@@ -35,6 +35,6 @@ build {
     }
 
     provisioner "shell" {
-        script = "./app,sh"
+        script = "./app.sh"
     }
 }
