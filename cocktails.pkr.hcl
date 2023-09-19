@@ -31,7 +31,7 @@ build {
 
     provisioner "file" {
         source = "../cocktails.zip"
-        destination = "/etc/systemd/system/cocktails.service"
+        destination = "/tmp/cocktails.service"
     }
 
     provisioner "shell" {
