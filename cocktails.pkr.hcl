@@ -26,7 +26,12 @@ build {
 
     provisioner "file" {
         source = "../cocktails.zip"
-        destination = "/homeec2-user/cocktails.zip"
+        destination = "/home/ec2-user/cocktails.zip"
+    }
+
+    provisioner "file" {
+        source = "../cocktails.zip"
+        destination = "/etc/systemd/system/cocktails.service"
     }
 
     provisioner "shell" {
