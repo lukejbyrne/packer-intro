@@ -24,10 +24,12 @@ build {
         "source.amazon-ebs.cocktails"
         ]
 
+    provisioner "file" {
+        source = "../cocktails.zip"
+        destination = "/homeec2-user/cocktails.zip"
+    }
+
     provisioner "shell" {
         script = "./app,sh"
     }
-# installations
-# configurations
-# files to copy 
 }
