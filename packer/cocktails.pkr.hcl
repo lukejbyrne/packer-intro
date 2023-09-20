@@ -8,10 +8,14 @@ packer {
   }
 }
 
+locals {
+  timestamp = regex_replace(timestamp(), "[- TZ:]", "")
+}
+
 # base to use
 # where to save
 source "amazon-ebs" "cocktails" {
-    ami_name = "cocktails-app"
+    ami_name = "cocktails-app-${timestamp}"
     source_ami = "ami-00c6177f250e07ec1"
     instance_type = "t2.micro"
     region = "us-west-2"

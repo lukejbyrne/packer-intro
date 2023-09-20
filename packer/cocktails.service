@@ -3,7 +3,7 @@ Description=Cocktails App
 After=cloud-final.service
 
 [Service]
-WorkingDirectory=/home/ec2-user/cocktails-app
+WorkingDirectory=/home/ec2-user/cocktails
 ExecStart=/usr/bin/node /home/ec2-user/cocktails-app/server.js
 Restart=always
 RestartSec=10
