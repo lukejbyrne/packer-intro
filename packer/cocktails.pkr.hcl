@@ -15,8 +15,19 @@ locals {
 # base to use
 # where to save
 source "amazon-ebs" "cocktails" {
-    ami_name = "cocktails-app-${timestamp}"
-    source_ami = "ami-00c6177f250e07ec1"
+    ami_name = "cocktails-app-${local.timestamp}"
+    
+    source_ami_filter {
+      filters = {
+        name = "amzn2-ami-hvm-2.*.1-x86_64-gp2"
+        root-device-type = "ebs"
+        virtualization-type = "nvm"
+      }
+
+    most_recent = true
+    owners = ["amazon"]
+    }
+    
     instance_type = "t2.micro"
     region = "us-west-2"
     ssh_username = "ec2-user"
