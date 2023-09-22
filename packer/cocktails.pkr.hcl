@@ -17,16 +17,18 @@ locals {
 source "amazon-ebs" "cocktails" {
     ami_name = "cocktails-app-${local.timestamp}"
     
-    source_ami_filter {
-      filters = {
-        name = "amzn2-ami-hvm-2.*.1-x86_64-gp2"
-        root-device-type = "ebs"
-        virtualization-type = "nvm"
-      }
+    # source_ami_filter {
+    #   filters = {
+    #     name = "amzn2-ami-hvm-2.*.1-x86_64-gp2" # AL2
+    #     root-device-type = "ebs"
+    #     virtualization-type = "hvm"
+    #   }
 
-    most_recent = true
-    owners = ["amazon"]
-    }
+    # most_recent = true
+    # owners = ["amazon"]
+    # }
+
+    source_ami = "ami-024c58b8d1b5e7c59" # CIS Amazon Linux 2 Benchmark - Level 2
     
     instance_type = "t2.micro"
     region = "us-west-2"
@@ -46,10 +48,11 @@ build {
 
     provisioner "file" {
         source = "../cocktails.zip"
-        destination = "/tmp/cocktails.service"
+        destination = "/var/tmp/cocktails.service"
     }
 
     provisioner "shell" {
+        remote_folder = "/var/tmp"
         script = "./app.sh"
     }
 }
